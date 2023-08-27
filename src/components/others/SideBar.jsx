@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => {
 
 const clientId = "1044924794976-n418rqsvep3iiaiecfsqlkf1jf5895is.apps.googleusercontent.com";
 
-const SideBar = ({ mobileOpen ,handleDrawerToggle}, props:Props)=>{
+const SideBar = ({ mobileOpen ,handleDrawerToggle}, Props)=>{
   const onFailure = () =>{
     console.log('failure')
   }
@@ -49,7 +49,7 @@ const SideBar = ({ mobileOpen ,handleDrawerToggle}, props:Props)=>{
   const classes = useStyles();
   const navigate = useNavigate();
   const location = useLocation();
-  const { window } = props;
+  const { window } = Props;
   
   
   
