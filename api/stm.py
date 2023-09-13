@@ -1,37 +1,39 @@
 
-from flask import Flask,render_template,request,jsonify
+import sys
+import os
+from flask import Flask, request
 from Auth import verify_token
-from flask_mysqldb import MySQL
 from flask_cors import CORS
 from summarizer import summarize
+from pymongo import MongoClient
+# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), './')))
+
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-
-UDetails=()
-app.config['MYSQL_HOST']="localhost"
-app.config['MYSQL_USER']="root"
-app.config['MYSQL_PASSWORD']=""
-app.config['MYSQL_DB']="stm"
-mysql=MySQL(app)
+MONGODB_URL = "mongodb+srv://mukeshpilane:123mukesh@cluster0.83vr0ru.mongodb.net/?retryWrites=true&w=majority" or "mongodb://localhost:27017"
+client = MongoClient(MONGODB_URL)
+db = client["STM"]
 # cursor = mysql.connection.cursor()
 
 @app.route("/verify", methods = ['GET', 'POST', 'DELETE'])      
-def verify():
-     token = request.headers.get('Authorization')
-     if verify_token(token) :
-          if(request.method == 'GET'):
-               return jsonify({"uinfo": verify_token(token)})  
+@verify_token
+def googleSigin(userData):
+    user_collection = db['users']
+    user = user_collection.find_one({"userId": userData.get('sub')})  
+    if user is None:
+        user_collection.insert_one({"userId": userData.get('sub')})
+    return {"uinfo": userData}
 
 
-@app.route("/summary", methods = ['GET', 'POST', 'DELETE'])      
-def summary():
+@app.route("/summary", methods = ['GET', 'POST', 'DELETE'])     
+@verify_token 
+def summary(userData):
      token = request.headers.get('Authorization')
-     uinfo = verify_token(token)
-     if verify_token(token) :
-          if(request.method == 'POST'):
+     uinfo = userData
+     if(request.method == 'POST'):
                content_type = request.headers.get('Content-Type')
                if (content_type == 'application/json'):
                     trancript = request.json
