@@ -29,6 +29,7 @@
   .chat-bot__icon-container{
     display: flex;
     align-items: center;
+    justify-content:space-between
   }
   .chat-bot__profile-icon{
     height: 45px;
@@ -90,7 +91,7 @@
     background-color: #000;
     float: right;
   }
-  body .card #message-section #user #user-response {
+  body .card #message-section #user #user-message {
     color: #fff;
   }
   body .card #message-section .message {

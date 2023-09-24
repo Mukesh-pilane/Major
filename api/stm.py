@@ -4,8 +4,9 @@ import os
 from flask import Flask, request
 from Auth import verify_token
 from flask_cors import CORS
-from summarizer import summarize
+from bot import bot
 from pymongo import MongoClient
+from bson.json_util import dumps
 # sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), './')))
 
 
@@ -15,7 +16,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 MONGODB_URL = "mongodb+srv://mukeshpilane:123mukesh@cluster0.83vr0ru.mongodb.net/?retryWrites=true&w=majority" or "mongodb://localhost:27017"
 client = MongoClient(MONGODB_URL)
-db = client["STM"]
+db = client["chatbot"]
 # cursor = mysql.connection.cursor()
 
 @app.route("/verify", methods = ['GET', 'POST', 'DELETE'])      
@@ -28,18 +29,27 @@ def googleSigin(userData):
     return {"uinfo": userData}
 
 
-@app.route("/summary", methods = ['GET', 'POST', 'DELETE'])     
+@app.route("/messages", methods = ['GET', 'POST', 'DELETE'])     
 @verify_token 
-def summary(userData):
+def Botresponse(userData):
      token = request.headers.get('Authorization')
      uinfo = userData
+     message_collection = db['messages']
+     uid = userData.get('sub')
      if(request.method == 'POST'):
                content_type = request.headers.get('Content-Type')
                if (content_type == 'application/json'):
-                    trancript = request.json
-                    return summarize(trancript)
+                    data = request.json
+                    botResponse = bot(data["message"])
+                    message_collection.insert_one({"userId":uid,"message": data["message"], "botResponse":botResponse})
+                    return botResponse
                else:
                     return 'Content-Type not supported!'
+     if(request.method == 'GET'):
+          data = message_collection.find({"userId":uid})
+          return dumps(data), 200
+          
+    
 
 
 
