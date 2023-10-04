@@ -40,8 +40,6 @@ useEffect(() => {
     <div className="App">
     <Routes>
                 <Route path="/" element={<Home />} >
-                  <Route path="/" element={<Allsummaries />} />
-                  <Route path="/upload" element={<Uploader />} />  
                 </Route>
                 <Route path="/auth" element={<Auth />} />
         </Routes>

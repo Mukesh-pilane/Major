@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import {useNavigate, useLocation} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useGoogleLogout } from 'react-google-login';
@@ -13,6 +13,8 @@ export default function Home() {
     existingMessages: [],
     responseMessage: '',
   });
+  const messageAreaRef = useRef();
+
   const [flag, setFlag] = useState(true)
   const serverEndpoint = `http://localhost:5000/messages`;
   const {profilePicture} = useSelector((state) => state.user);
@@ -20,6 +22,14 @@ const clientId = "1044924794976-n418rqsvep3iiaiecfsqlkf1jf5895is.apps.googleuser
 const onFailure = () =>{
     console.log('failure')
   }
+
+
+  function scrollToBottom() {
+    if (messageAreaRef.current) {
+      messageAreaRef.current.scrollTop = messageAreaRef.current.scrollHeight ;
+    }
+  }
+
 
   const onLogoutSuccess = () =>{
     navigate('/auth')
@@ -66,6 +76,7 @@ const onFailure = () =>{
         // Handle errors here
         console.error('Error sending message:', error);
       });
+      scrollToBottom()
   };
 
   const fetchExistingMessages = () => {
@@ -104,7 +115,7 @@ const onFailure = () =>{
             <div className="chat-bot__header-title">
             <h1>Chat box!</h1>          
             </div>
-            <div className="chat-bot__icon-container">
+            <div className="chat-bot__icon-container" ref={messageAreaRef}>
                 <div className="chat-bot__profile-icon">
                     <img src={profilePicture} alt="" />
                     
@@ -119,7 +130,7 @@ const onFailure = () =>{
                     </div>
             </div>
         </div>
-        <div id="message-section">
+        <div id="message-section" >
           {
             chatData.existingMessages?.map((res,i)=>{
               return(
