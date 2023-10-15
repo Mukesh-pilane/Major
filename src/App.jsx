@@ -6,8 +6,8 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import {Routes, Route, useLocation} from 'react-router-dom'
 
 // import DetailedSummary from './pages/DetailedSummary/DetailedSummary';
-import Allsummaries from './containers/Allsummaries'
-import Uploader from './containers/CreateSummary'
+// import Allsummaries from './containers/Allsummaries'
+// import Uploader from './containers/CreateSummary'
 import { useDispatch } from "react-redux";
 import { login, verify } from "./features/userSlice";
 

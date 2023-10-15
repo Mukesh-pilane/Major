@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios"
 
 export const verify = createAsyncThunk('user/verify', ()=>{
-    return axios.get('http://localhost:5000/verify',{headers:{
+    return axios.get('https://chatbotapi-hw03.onrender.com/verify',{headers:{
         "Authorization": localStorage.getItem('tokenId')
     }
     })

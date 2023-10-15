@@ -3,7 +3,7 @@ import {useNavigate, useLocation} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useGoogleLogout } from 'react-google-login';
 import axios from 'axios'
-
+import SpeechToText from '../../components/SpeechToText';
 import "./home.css"
 
 export default function Home() {
@@ -14,11 +14,11 @@ export default function Home() {
     responseMessage: '',
   });
   const messageAreaRef = useRef();
-
+  
   const [flag, setFlag] = useState(true)
-  const serverEndpoint = `http://localhost:5000/messages`;
+  const serverEndpoint = `https://chatbotapi-hw03.onrender.com/messages`;
   const {profilePicture} = useSelector((state) => state.user);
-const clientId = "1044924794976-n418rqsvep3iiaiecfsqlkf1jf5895is.apps.googleusercontent.com";
+const clientId = "423801836330-a83v044m2fg4rbqusrd6t86d795mco2g.apps.googleusercontent.com";
 const onFailure = () =>{
     console.log('failure')
   }
@@ -117,7 +117,7 @@ const onFailure = () =>{
             </div>
             <div className="chat-bot__icon-container" ref={messageAreaRef}>
                 <div className="chat-bot__profile-icon">
-                    <img src={profilePicture} alt="" />
+                    <img src={profilePicture? profilePicture : ""} alt="" />
                     
                 </div>
                 <div className="chat-bot__logout"
@@ -151,6 +151,8 @@ const onFailure = () =>{
           </button>
         </div>
       </div>      
+      <SpeechToText />
+
       </div>
     )
 }
