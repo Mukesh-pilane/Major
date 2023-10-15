@@ -5,7 +5,7 @@ import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
-import { SpeechRecognitionProvider } from 'react-speech-recognition';
+// import { SpeechRecognitionProvider } from 'react-speech-recognition';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

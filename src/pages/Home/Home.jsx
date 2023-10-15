@@ -152,9 +152,9 @@ const onFailure = () =>{
           <button className="send" onClick={handleSubmit}>
             <div className="circle"><i className="zmdi zmdi-mail-send"></i></div>
           </button>
+      <SpeechToText setMessage={setMessage}/>
         </div>
       </div>      
-      <SpeechToText />
 
       </div>
     )

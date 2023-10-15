@@ -4,10 +4,11 @@ import { useEffect } from "react";
 import "./auth.css";
 import SignupImg from "../../img/SignupImg";
 import { useNavigate } from "react-router-dom";
-"1044924794976-n418rqsvep3iiaiecfsqlkf1jf5895is.apps.googleusercontent.com"
+
+//"1044924794976-n418rqsvep3iiaiecfsqlkf1jf5895is.apps.googleusercontent.com"
 
 // const clientId = import.meta.env.REACT_APP_CLIENT_ID;
-const clientId = "1044924794976-n418rqsvep3iiaiecfsqlkf1jf5895is.apps.googleusercontent.com"
+const clientId = "423801836330-a83v044m2fg4rbqusrd6t86d795mco2g.apps.googleusercontent.com"
 
 const Auth = () => {
   const navigate = useNavigate();

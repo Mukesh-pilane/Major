@@ -4,7 +4,7 @@ import axios from "axios"
 
 export const verify = createAsyncThunk('user/verify', ()=>{
     return axios.get('https://chatbotapi-hw03.onrender.com/verify',{headers:{
-        "Authorization": localStorage.getItem('tokenId')
+        "Authorization": localStorage.getItem('tokenId').trim()
     }
     })
     .then((response) => { 

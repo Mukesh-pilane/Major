@@ -1,7 +1,12 @@
-* {
+*, body{
     font-size: 1.3vw;
-  }
-
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style: none;
+      text-decoration: none;
+    }
+    
   .chat-bot__container{
     display: flex;
     align-items: center;
@@ -62,7 +67,7 @@
     width: 10px;
   }
   body .card #message-section {
-    height: 32vw;
+    height: 70vh;
     padding: 0 2.5vw;
     overflow-y: auto;
     scrollbar-width: thin;
@@ -152,4 +157,35 @@
     font-size: 3vw;
     margin-left: -1vw;
     margin-top: 1vw;
+  }
+
+  
+  .microphone-stop_btn {
+    border: none;
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 25px;
+  }
+
+  @media (max-width: 768px) {
+    .chat-bot__container{
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+    .card{
+      width: 100vw;
+      height: 100vh;
+    }
+    .card #message-section {
+      height: 90vh;
+      padding: 0 2.5vw;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+    }
   }
