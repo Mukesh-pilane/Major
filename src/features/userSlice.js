@@ -25,8 +25,8 @@ export const userSlice = createSlice({
     },
     reducers:{
         login: (state, action) => {
-            state.user = action.payload.user;
-            state.profilePicture = action.payload.profilePicture
+            state.user = action.payload?.user;
+            state.profilePicture = action.payload?.profilePicture
         },
         logout: (state) => {
             state.user = null;
@@ -38,8 +38,8 @@ export const userSlice = createSlice({
         },
         [verify.fulfilled]: (state, action) => {
             state.isLoading = true;
-            state.user = action.payload.user;
-            state.profilePicture = action.payload.profilePicture
+            state.user = action.payload?.user;
+            state.profilePicture = action.payload?.profilePicture
         },
         [verify.rejected]: (state) => {
             state.isLoading = false;

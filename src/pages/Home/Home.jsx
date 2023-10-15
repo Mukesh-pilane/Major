@@ -93,7 +93,6 @@ const onFailure = () =>{
           existingMessages: response.data,
         };
         setChatData(newChatData);
-        console.log(response);
 
       })
       .catch((error) => {
@@ -105,8 +104,12 @@ const onFailure = () =>{
   useEffect(() => {
     // Fetch existing messages when the component mounts
     fetchExistingMessages();
-    console.log(chatData)
   }, [flag]); 
+  useEffect(() => {
+    if(!localStorage.getItem('tokenId')){
+      navigate('/auth')
+    }
+  })
 
     return (
         <div className="chat-bot__container">

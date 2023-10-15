@@ -28,7 +28,7 @@ function SpeechToText() {
     stopHandle();
     resetTranscript();
   };
-  console.log(transcript);
+  // console.log(transcript);
   return (
     <div className="microphone-wrapper">
       <div className="mircophone-container">

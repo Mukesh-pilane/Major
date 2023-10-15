@@ -30,9 +30,11 @@ function App() {
 const dispatch = useDispatch();
 
 useEffect(() => {
+  if(localStorage.getItem('tokenId')){
   dispatch(verify());
-
   }
+  }
+  
   , [])
 
   return (
