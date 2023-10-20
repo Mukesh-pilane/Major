@@ -26,10 +26,10 @@ function SpeechToText({setMessage}) {
     SpeechRecognition.stopListening();
     setMessage(transcript)
   };
-  const handleReset = () => {
-    stopHandle();
-    resetTranscript();
-  };
+  // const handleReset = () => {
+  //   stopHandle();
+  //   resetTranscript();
+  // };
   // console.log(transcript);
   return (
     <div className="microphone-wrapper">
@@ -41,15 +41,15 @@ function SpeechToText({setMessage}) {
         ref={microphoneRef}
         onClick={handleListing}
       >
+
         <i class="fa-solid fa-microphone"></i>
+
       </div>
        } 
-        {/* <div className="microphone-status">
-          {isListening && <i class="fa-solid fa-stop"></i> }
-        </div> */}
+    
         {isListening && (
           <button className="microphone-stop_btn" onClick={stopHandle}>
-            <i class="fa-solid fa-stop"></i> 
+            <i class="fa-solid fa-stop"></i>
           </button>
         )}
       </div>

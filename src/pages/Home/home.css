@@ -1,5 +1,4 @@
 *, body{
-    font-size: 1.3vw;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -7,13 +6,17 @@
       text-decoration: none;
     }
     
-  .chat-bot__container{
+  .chat-bot__loader__container, .chat-bot__container{
     display: flex;
     align-items: center;
-    justify-content:center;
     height: 100vh;
     width: 50%;
-    margin: 0 auto
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .chat-bot__loader__container{
+    justify-content: center;
   }
   
   body .card {
@@ -26,6 +29,14 @@
     padding: 0vw;
     display: flex;
     justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+  }
+  .chat-bot__header-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   body .card #header h1 {
     color: #fff;
@@ -50,7 +61,7 @@
 
   }
 
-  .chat-bot__logout{
+  .chat-bot__logout, .audio_icon{
     color: #fff;
     height: 45px;
     width: 45px;
@@ -69,6 +80,9 @@
   body .card #message-section {
     height: 70vh;
     padding: 0 2.5vw;
+    padding-top: 100px;
+
+    width: 100% !important;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--thumbBG) var(--scrollbarBG);
@@ -104,7 +118,7 @@
   body .card #message-section .message {
     color: #000;
     clear: both;
-    line-height: 1.2vw;
+    line-height: 1.2rem;
     font-size: 1.2vw;
     padding: 8px;
     position: relative;
@@ -118,7 +132,7 @@
     padding: 0 2.5vw;
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     overflow: hidden;
     height: 6vw;
     width: 100%;
@@ -159,11 +173,13 @@
     margin-top: 1vw;
   }
 
+  .microphone-stop_btn  i{
+    font-size: 2.5vw !important;
+  }
+
   
   .microphone-stop_btn {
     border: none;
-    height: 50px;
-    width: 50px;
     margin-right: 10px;
     outline: none;
     cursor: pointer;
@@ -171,6 +187,15 @@
     border-radius: 25px;
   }
 
+  .microphone-icon-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .audio_Active{
+    color: blue
+  }
   @media (max-width: 768px) {
     .chat-bot__container{
       display: flex;
@@ -182,10 +207,46 @@
       height: 100vh;
     }
     .card #message-section {
-      height: 90vh;
+      height: 100% !important;
       padding: 0 2.5vw;
       overflow-y: auto;
       scrollbar-width: thin;
       scrollbar-color: var(--thumbBG) var(--scrollbarBG);
     }
+  body .card #header {
+    height: 8vh;
   }
+  .message{
+    font-size: 18px !important;
+  }
+  i{
+    font-size: 18px;
+  }
+  }
+
+  /* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  --c:no-repeat radial-gradient(farthest-side,#514b82 92%,#0000);
+  background: 
+    var(--c) 50%  0, 
+    var(--c) 50%  100%, 
+    var(--c) 100% 50%, 
+    var(--c) 0    50%;
+  background-size: 10px 10px;
+  animation: l18 1s infinite;
+  position: relative;
+}
+.loader::before {    
+  content:"";
+  position: absolute;
+  inset:0;
+  margin: 3px;
+  background: repeating-conic-gradient(#0000 0 35deg,#514b82 0 90deg);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 3px),#000 0);
+  border-radius: 50%;
+}
+@keyframes l18 { 
+  100%{transform: rotate(.5turn)}
+}
